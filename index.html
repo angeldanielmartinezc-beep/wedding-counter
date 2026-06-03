@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:transparent;
+
+    font-family:Georgia, serif;
+}
+
+.counter{
+    text-align:center;
+}
+
+.value{
+    font-size:80px;
+    color:#d4a017;
+    font-weight:bold;
+}
+
+.label{
+    font-size:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="counter">
+
+    <div class="value" id="solar"></div>
+
+    <div class="label">
+        Solar Rotations Until Our Wedding
+    </div>
+
+</div>
+
+<script>
+
+const weddingDate =
+    new Date("2026-08-15T15:00:00");
+
+const solarRotation = 27.2753;
+
+function updateCounter(){
+
+    const now = new Date();
+
+    const daysRemaining =
+        (weddingDate-now) /
+        (1000*60*60*24);
+
+    const rotations =
+        daysRemaining/solarRotation;
+
+    document.getElementById("solar")
+        .innerHTML =
+        "☀ " +
+        Math.max(rotations,0)
+        .toFixed(6);
+
+}
+
+updateCounter();
+
+setInterval(updateCounter,1000);
+
+</script>
+
+</body>
+
+</html>
